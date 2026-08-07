@@ -1,0 +1,62 @@
+appId: com.taskmanager.app
+---
+# Registra varios gastos y valida que el resumen conserve la cantidad y el total.
+
+# 1. Abrir la app sin gastos persistidos y entrar al flujo.
+- launchApp:
+    clearState: true
+- assertVisible: 'Task Manager'
+- tapOn: 'Control de Gastos'
+- assertVisible: 'Registrar gasto'
+
+# 2. Registrar el primer gasto.
+- tapOn:
+    id: 'input-descripcion'
+- inputText: 'Transporte'
+- tapOn:
+    id: 'input-monto'
+- inputText: '20'
+- tapOn: 'Transporte'
+- scrollUntilVisible:
+    element:
+      text: 'Guardar'
+    direction: DOWN
+    centerElement: true
+- tapOn: 'Guardar'
+- assertVisible: 'Gasto guardado exitosamente'
+
+# 3. Registrar un segundo gasto desde el formulario reiniciado.
+- scrollUntilVisible:
+    element:
+      id: 'input-descripcion'
+    direction: UP
+    centerElement: true
+- tapOn:
+    id: 'input-descripcion'
+- inputText: 'Café'
+- tapOn:
+    id: 'input-monto'
+- inputText: '15'
+- tapOn: 'Comida'
+- scrollUntilVisible:
+    element:
+      text: 'Guardar'
+    direction: DOWN
+    centerElement: true
+- tapOn: 'Guardar'
+
+# 4. Verificar que el resumen y el listado incluyan ambos gastos.
+- scrollUntilVisible:
+    element:
+      text: '$35.00'
+    direction: UP
+    centerElement: true
+- assertVisible: '$35.00'
+- scrollUntilVisible:
+    element:
+      text: '2 gastos'
+    direction: DOWN
+    centerElement: true
+- assertVisible: '2 gastos'
+- assertVisible: 'Transporte'
+- assertVisible: 'Café'

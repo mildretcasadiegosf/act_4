@@ -14,6 +14,7 @@ export function LabeledInput({ label, error, ...rest }: LabeledInputProps) {
     <View className="gap-1">
       <Text className="text-sm font-medium text-gray-700">{label}</Text>
       <TextInput
+        accessibilityLabel={label}
         placeholderTextColor="#9ca3af"
         inputAccessoryViewID={Platform.OS === 'ios' ? KEYBOARD_ACCESSORY_ID : undefined}
         className={`rounded-lg border bg-white px-4 py-3 text-base text-gray-900 ${

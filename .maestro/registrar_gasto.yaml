@@ -1,0 +1,42 @@
+appId: com.taskmanager.app
+---
+# Registra un gasto válido y confirma que se refleja en el listado y el total.
+
+# 1. Abrir la app sin datos persistidos y entrar a Control de Gastos.
+- launchApp:
+    clearState: true
+- assertVisible: 'Task Manager'
+- tapOn: 'Control de Gastos'
+- assertVisible: 'Registrar gasto'
+- assertVisible: 'No hay gastos registrados'
+
+# 2. Completar los campos obligatorios del gasto.
+- tapOn:
+    id: 'input-descripcion'
+- inputText: 'Almuerzo'
+- tapOn:
+    id: 'input-monto'
+- inputText: '2550'
+- tapOn: 'Comida'
+
+# 3. Guardar y verificar la confirmación, el registro y el total acumulado.
+- scrollUntilVisible:
+    element:
+      text: 'Guardar'
+    direction: DOWN
+    centerElement: true
+- tapOn: 'Guardar'
+- assertVisible: 'Gasto guardado exitosamente'
+- scrollUntilVisible:
+    element:
+      text: '$2550.00'
+    direction: DOWN
+    centerElement: true
+- assertVisible: '$2550.00'
+- scrollUntilVisible:
+    element:
+      text: '1 gasto'
+    direction: DOWN
+    centerElement: true
+- assertVisible: '1 gasto'
+- assertVisible: 'Almuerzo'

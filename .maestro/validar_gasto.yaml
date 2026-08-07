@@ -1,0 +1,29 @@
+appId: com.taskmanager.app
+---
+# Impide guardar un gasto cuando faltan los campos obligatorios.
+
+# 1. Abrir la app sin gastos previos y entrar al formulario.
+- launchApp:
+    clearState: true
+- assertVisible: 'Task Manager'
+- tapOn: 'Control de Gastos'
+- assertVisible: 'Registrar gasto'
+
+# 2. Enviar el formulario vacío.
+- scrollUntilVisible:
+    element:
+      text: 'Guardar'
+    direction: DOWN
+    centerElement: true
+- tapOn: 'Guardar'
+
+# 3. Verificar mensajes de validación y que no se cree ningún gasto.
+- scrollUntilVisible:
+    element:
+      text: 'La descripción es obligatoria'
+    direction: UP
+    centerElement: true
+- assertVisible: 'La descripción es obligatoria'
+- assertVisible: 'El monto debe ser mayor que cero'
+- assertNotVisible: 'Gasto guardado exitosamente'
+- assertVisible: 'No hay gastos registrados'
