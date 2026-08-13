@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68.75% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/16</span>
+                <span class='fraction'>0/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/8</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/6</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.42% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/14</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -139,24 +139,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,8 +166,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -206,22 +206,22 @@ import { ConfirmDeleteDialog } from '../components/ConfirmDeleteDialog';
 import { useCreateTask } from '../hooks/useCreateTask';
 import { filterTasksByStatus, FilterStatus } from '../utils/filterTasks';
 &nbsp;
-const FILTERS: { value: FilterStatus; label: string }[] = [
+const FILTERS: { value: FilterStatus; label: string }[] = <span class="cstat-no" title="statement not covered" >[</span>
   { value: 'all', label: 'Todas' },
   { value: 'pending', label: 'Pendientes' },
   { value: 'completed', label: 'Completadas' },
 ];
 &nbsp;
-export function CreateTaskScreen() {
-  const { status, tasks, submit, removeTask, toggleTask } = useCreateTask();
-  const insets = useSafeAreaInsets();
-  const [pendingDelete, setPendingDelete] = useState&lt;string | null&gt;(null);
-  const [filter, setFilter] = useState&lt;FilterStatus&gt;('all');
+export function <span class="fstat-no" title="function not covered" >CreateTaskScreen(</span>) {
+  const { status, tasks, submit, removeTask, toggleTask } = <span class="cstat-no" title="statement not covered" >useCreateTask();</span>
+  const insets = <span class="cstat-no" title="statement not covered" >useSafeAreaInsets();</span>
+  const [pendingDelete, setPendingDelete] = <span class="cstat-no" title="statement not covered" >useState&lt;string | null&gt;(null);</span>
+  const [filter, setFilter] = <span class="cstat-no" title="statement not covered" >useState&lt;FilterStatus&gt;('all');</span>
 &nbsp;
-  const pendingTask = tasks.find((t) =&gt; t.id === pendingDelete);
-  const visibleTasks = filterTasksByStatus(tasks, filter);
+  const pendingTask = <span class="cstat-no" title="statement not covered" >tasks.find(<span class="fstat-no" title="function not covered" >(t</span>) =&gt; <span class="cstat-no" title="statement not covered" >t.id === pendingDelete)</span>;</span>
+  const visibleTasks = <span class="cstat-no" title="statement not covered" >filterTasksByStatus(tasks, filter);</span>
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;View
       className="flex-1 gap-4 bg-gray-50 p-4"
       style={{ paddingTop: insets.top + 16, paddingBottom: insets.bottom + 16 }}
@@ -234,9 +234,9 @@ export function CreateTaskScreen() {
         &lt;/Text&gt;
       )}
       &lt;View className="flex-row gap-2"&gt;
-        {FILTERS.map((f) =&gt; {
-          const active = filter === f.value;
-          return (
+        {FILTERS.map(<span class="fstat-no" title="function not covered" >(f</span>) =&gt; {
+          const active = <span class="cstat-no" title="statement not covered" >filter === f.value;</span>
+<span class="cstat-no" title="statement not covered" >          return (</span>
             &lt;Pressable
               key={f.value}
               onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setFilter(f.value)}</span>
@@ -271,7 +271,7 @@ export function CreateTaskScreen() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-08-01T16:13:03.284Z
+                at 2026-08-12T03:28:39.663Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

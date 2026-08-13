@@ -1,30 +1,230 @@
-name: Test Suite
+name: CI/CD Pipeline - Test Suite
 
 on:
   push:
-    branches: [main, develop]
+    branches:
+      - main
+      - develop
+      - 'feature/**'
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - develop
+      - 'feature/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  test:
+  # ============================================================================
+  # JOB 1: Linting y Type Checking
+  # ============================================================================
+  lint-and-type-check:
+    name: Lint & Type Check
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout del código
+      - name: 📥 Checkout del código
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Configurar Node.js
+      - name: 🔧 Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: Instalar dependencias
+      - name: 📦 Instalar dependencias
         run: npm ci --legacy-peer-deps
 
-      - name: Verificar tipos
+      - name: ✅ Verificar tipos TypeScript
         run: npx tsc --noEmit
+        
+      - name: 🎨 Ejecutar ESLint
+        run: npx eslint . --ext .ts,.tsx --max-warnings 0
+        continue-on-error: true
 
-      - name: Ejecutar pruebas con cobertura
-        run: npx jest --coverage --ci
+  # ============================================================================
+  # JOB 2: Pruebas Unitarias, Componentes e Integración
+  # ============================================================================
+  test:
+    name: Unit, Component & Integration Tests
+    runs-on: ubuntu-latest
+    needs: lint-and-type-check
+    
+    strategy:
+      matrix:
+        test-type:
+          - unit
+          - component
+          - integration
+          - contract
+    
+    steps:
+      - name: 📥 Checkout del código
+        uses: actions/checkout@v4
+
+      - name: 🔧 Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Instalar dependencias
+        run: npm ci --legacy-peer-deps
+
+      - name: 🧪 Ejecutar pruebas (${{ matrix.test-type }})
+        run: |
+          case "${{ matrix.test-type }}" in
+            unit)
+              npm test -- --testPathPattern="(^(?!.*integration|.*component|.*contract|.*a11y).)*\.test\.(ts|tsx)$" --coverage
+              ;;
+            component)
+              npm test -- --testPathPattern="components/" --coverage
+              ;;
+            integration)
+              npm test -- --testPathPattern="integration/" --coverage
+              ;;
+            contract)
+              npm test -- --testPathPattern="contract/" --coverage
+              ;;
+          esac
+
+      - name: 📊 Subir artefacto de cobertura
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-${{ matrix.test-type }}
+          path: coverage/
+          retention-days: 30
+
+  # ============================================================================
+  # JOB 3: Validación de Cobertura
+  # ============================================================================
+  coverage-check:
+    name: Coverage Validation (≥70%)
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+      - name: 📥 Checkout del código
+        uses: actions/checkout@v4
+
+      - name: 🔧 Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Instalar dependencias
+        run: npm ci --legacy-peer-deps
+
+      - name: 📈 Generar reporte de cobertura
+        run: npm run test:coverage -- --ci
+
+      - name: 📊 Descargar artefactos de cobertura
+        uses: actions/download-artifact@v4
+        with:
+          path: coverage-reports/
+
+      - name: ✅ Validar umbral de cobertura (70%)
+        run: |
+          echo "Verificando umbral de cobertura..."
+          npx jest --coverage --ci --checkCoverageThreshold
+        continue-on-error: false
+
+      - name: 📤 Subir reporte consolidado
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report-consolidated
+          path: coverage/
+          retention-days: 60
+
+      - name: 💬 Comentar cobertura en PR
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const coveragePath = './coverage/coverage-summary.json';
+            
+            if (fs.existsSync(coveragePath)) {
+              const coverage = JSON.parse(fs.readFileSync(coveragePath, 'utf-8'));
+              const global = coverage.total;
+              
+              const comment = `## 📊 Coverage Report
+              
+              
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            }
+
+  # ============================================================================
+  # JOB 4: Seguridad y Análisis Estático
+  # ============================================================================
+  security-check:
+    name: Security & Static Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout del código
+        uses: actions/checkout@v4
+
+      - name: 🔧 Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Instalar dependencias
+        run: npm ci --legacy-peer-deps
+
+      - name: 🔍 Auditoría de dependencias
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+
+      - name: 🚨 Verificación de secretos
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --debug
+
+  # ============================================================================
+  # JOB 5: Resumen Final y Notificación
+  # ============================================================================
+  summary:
+    name: Pipeline Summary
+    runs-on: ubuntu-latest
+    needs: [lint-and-type-check, test, coverage-check, security-check]
+    if: always()
+    
+    steps:
+      - name: ✅ Verificar estado del pipeline
+        run: |
+          echo "═══════════════════════════════════════════════════════════"
+          echo "  CI/CD PIPELINE SUMMARY"
+          echo "═══════════════════════════════════════════════════════════"
+          echo ""
+          echo "✓ Linting & Type Check: ${{ needs.lint-and-type-check.result }}"
+          echo "✓ Unit & Component Tests: ${{ needs.test.result }}"
+          echo "✓ Coverage Validation: ${{ needs.coverage-check.result }}"
+          echo "✓ Security Check: ${{ needs.security-check.result }}"
+          echo ""
+          echo "═══════════════════════════════════════════════════════════"
+        
+      - name: ❌ Fallar si algún job falló
+        if: |
+          needs.lint-and-type-check.result == 'failure' ||
+          needs.test.result == 'failure' ||
+          needs.coverage-check.result == 'failure' ||
+          needs.security-check.result == 'failure'
+        run: exit 1

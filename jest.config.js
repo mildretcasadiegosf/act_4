@@ -34,7 +34,52 @@ module.exports = {
     '!src/**/index.ts',
     '!src/mocks/**',
   ],
+  /**
+   * UMBRALES DE COBERTURA DE CÓDIGO (70% mínimo)
+   * 
+   * Estos valores definen el mínimo de cobertura de código requerido
+   * para que el pipeline de CI/CD sea exitoso. Si alguno de estos
+   * umbrales no se cumple, Jest fallará y bloqueará el merge.
+   * 
+   * Explicación de métricas:
+   * - branches: Porcentaje de ramas de código alcanzadas por pruebas
+   * - functions: Porcentaje de funciones ejecutadas en pruebas
+   * - lines: Porcentaje de líneas de código cubiertas
+   * - statements: Porcentaje de sentencias ejecutadas
+   */
   coverageThreshold: {
-    global: { branches: 70, functions: 70, lines: 70, statements: 70 },
+    global: {
+      branches: 70,
+      functions: 70,
+      lines: 70,
+      statements: 70,
+    },
   },
+
+  /**
+   * Configuración de reportes de cobertura
+   */
+  coverageReporters: [
+    'text',           // Reporte en texto para terminal
+    'text-summary',   // Resumen de texto
+    'html',           // Reporte HTML interactivo
+    'lcov',           // Formato LCOV para integración con herramientas
+    'json',           // Formato JSON para procesamiento automatizado
+    'json-summary',   // Resumen JSON
+  ],
+
+  /**
+   * Directorio de salida para reportes de cobertura
+   */
+  coverageDirectory: 'coverage',
+
+  /**
+   * Configuración de paralelismo
+   */
+  maxWorkers: '50%',
+
+  /**
+   * Configuración de timeouts
+   */
+  testTimeout: 10000,
 };
