@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -106,21 +106,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -136,12 +136,12 @@ interface TaskListProps {
   onToggle?: (id: string) =&gt; void;
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >TaskList(</span>{ tasks, onDelete = <span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >()</span> =&gt; {},</span> onToggle = <span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >()</span> =&gt; {} </span>}: TaskListProps) {
-<span class="cstat-no" title="statement not covered" >  if (tasks.length === 0) {</span>
-<span class="cstat-no" title="statement not covered" >    return &lt;Text className="py-6 text-center text-base text-gray-500"&gt;No hay tareas aún&lt;/Text&gt;;</span>
+export function TaskList({ tasks, onDelete = <span class="fstat-no" title="function not covered" >()</span> =&gt; {}, onToggle = <span class="fstat-no" title="function not covered" >()</span> =&gt; {} }: TaskListProps) {
+  if (tasks.length === 0) {
+    return &lt;Text className="py-6 text-center text-base text-gray-500"&gt;No hay tareas aún&lt;/Text&gt;;
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;View&gt;
       &lt;Text className="mb-2 text-sm font-medium text-gray-500"&gt;
         {tasks.length === 1 ? '1 tarea' : `${tasks.length} tareas`}
@@ -150,8 +150,8 @@ export function <span class="fstat-no" title="function not covered" >TaskList(</
         data={tasks}
         // sin esto el ScrollView se come el primer tap en una tarjeta mientras el teclado está abierto
         keyboardShouldPersistTaps="handled"
-        keyExtractor={<span class="fstat-no" title="function not covered" >(t</span>) =&gt; <span class="cstat-no" title="statement not covered" >t.id}</span>
-        renderItem={<span class="fstat-no" title="function not covered" >({</span> item }) =&gt; <span class="cstat-no" title="statement not covered" >&lt;TaskCard task={item} onDelete={onDelete} onToggle={onToggle} /&gt;}</span>
+        keyExtractor={(t) =&gt; t.id}
+        renderItem={({ item }) =&gt; &lt;TaskCard task={item} onDelete={onDelete} onToggle={onToggle} /&gt;}
       /&gt;
     &lt;/View&gt;
   );
@@ -163,7 +163,7 @@ export function <span class="fstat-no" title="function not covered" >TaskList(</
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-08-12T03:28:39.663Z
+                at 2026-08-13T03:15:07.383Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

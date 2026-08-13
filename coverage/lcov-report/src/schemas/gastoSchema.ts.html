@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">71.42% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>5/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -90,11 +90,9 @@
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -107,17 +105,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { z } from 'zod';
 &nbsp;
-export const CATEGORIAS_GASTO = <span class="cstat-no" title="statement not covered" >['Comida', 'Transporte', 'Ocio', 'Otros'] as const;</span>
+export const CATEGORIAS_GASTO = ['Comida', 'Transporte', 'Ocio', 'Otros'] as const;
 &nbsp;
-export const gastoSchema = <span class="cstat-no" title="statement not covered" >z.object({</span>
+export const gastoSchema = z.object({
   descripcion: z.string().trim().min(1, 'La descripción es obligatoria'),
   monto: z.coerce.number().positive('El monto debe ser mayor que cero'),
   categoria: z.enum(CATEGORIAS_GASTO, { message: 'Selecciona una categoría válida' }),
@@ -131,9 +131,9 @@ export interface GastoFormValues {
   fecha: string;
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >validateGasto(</span>values: GastoFormValues): Partial&lt;Record&lt;keyof GastoFormValues, string&gt;&gt; {
-  const result = <span class="cstat-no" title="statement not covered" >gastoSchema.safeParse(values);</span>
-<span class="cstat-no" title="statement not covered" >  if (result.success) <span class="cstat-no" title="statement not covered" >return {};</span></span>
+export function validateGasto(values: GastoFormValues): Partial&lt;Record&lt;keyof GastoFormValues, string&gt;&gt; {
+  const result = gastoSchema.safeParse(values);
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (result.success) return {};
 <span class="cstat-no" title="statement not covered" >  return Object.fromEntries(</span>
     Object.entries(result.error.flatten().fieldErrors).map(<span class="fstat-no" title="function not covered" >([</span>field, messages]) =&gt; <span class="cstat-no" title="statement not covered" >[field, messages?.[0]])</span>
   );
@@ -145,7 +145,7 @@ export function <span class="fstat-no" title="function not covered" >validateGas
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-08-12T03:28:39.663Z
+                at 2026-08-13T03:15:07.383Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

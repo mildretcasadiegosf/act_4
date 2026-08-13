@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -126,7 +126,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -134,14 +134,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -150,7 +150,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -171,8 +171,8 @@ interface Props {
   errors?: Partial&lt;Record&lt;keyof ShippingInfo, string&gt;&gt;;
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >ShippingInfoSection(</span>{ values, onChange, errors = <span class="branch-0 cbranch-no" title="branch not covered" >{} </span>}: Props) {
-<span class="cstat-no" title="statement not covered" >  return (</span>
+export function ShippingInfoSection({ values, onChange, errors = <span class="branch-0 cbranch-no" title="branch not covered" >{} </span>}: Props) {
+  return (
     &lt;View className="gap-3"&gt;
       &lt;Text className="text-lg font-bold text-gray-900"&gt;Envío y entrega&lt;/Text&gt;
       &lt;LabeledInput
@@ -180,14 +180,14 @@ export function <span class="fstat-no" title="function not covered" >ShippingInf
         testID="input-direccion"
         placeholder="Calle 123 #45-67"
         value={values.direccion}
-        onChangeText={<span class="fstat-no" title="function not covered" >(t</span>) =&gt; <span class="cstat-no" title="statement not covered" >onChange('direccion', t)}</span>
+        onChangeText={(t) =&gt; onChange('direccion', t)}
       /&gt;
       &lt;LabeledInput
         label="Ciudad"
         testID="input-ciudad"
         placeholder="Bogotá"
         value={values.ciudad}
-        onChangeText={<span class="fstat-no" title="function not covered" >(t</span>) =&gt; <span class="cstat-no" title="statement not covered" >onChange('ciudad', t)}</span>
+        onChangeText={(t) =&gt; onChange('ciudad', t)}
       /&gt;
       &lt;LabeledInput
         label="Código postal"
@@ -196,7 +196,7 @@ export function <span class="fstat-no" title="function not covered" >ShippingInf
         keyboardType="phone-pad"
         value={values.codigoPostal}
         error={errors.codigoPostal}
-        onChangeText={<span class="fstat-no" title="function not covered" >(t</span>) =&gt; <span class="cstat-no" title="statement not covered" >onChange('codigoPostal', t)}</span>
+        onChangeText={(t) =&gt; onChange('codigoPostal', t)}
       /&gt;
     &lt;/View&gt;
   );
@@ -208,7 +208,7 @@ export function <span class="fstat-no" title="function not covered" >ShippingInf
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-08-12T03:28:39.582Z
+                at 2026-08-13T03:15:07.285Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

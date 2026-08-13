@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">35.29% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/17</span>
+                <span class='fraction'>6/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">18.18% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>2/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">28.57% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>4/14</span>
             </div>
         
             
@@ -91,16 +91,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -109,13 +100,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Gasto } from '../types';
 &nbsp;
 export type FiltroGastos = 'all' | 'week' | 'month';
 &nbsp;
-const startOfWeek = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(d</span>ate: Date) =&gt; {</span>
+const startOfWeek = <span class="fstat-no" title="function not covered" >(d</span>ate: Date) =&gt; {
   const result = <span class="cstat-no" title="statement not covered" >new Date(date);</span>
   const day = <span class="cstat-no" title="statement not covered" >result.getDay() || 7;</span>
 <span class="cstat-no" title="statement not covered" >  result.setDate(result.getDate() - day + 1);</span>
@@ -123,8 +123,8 @@ const startOfWeek = <span class="cstat-no" title="statement not covered" ><span 
 <span class="cstat-no" title="statement not covered" >  return result;</span>
 };
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >filterGastos(</span>gastos: Gasto[], filtro: FiltroGastos, today = <span class="branch-0 cbranch-no" title="branch not covered" >new Date())</span>: Gasto[] {
-<span class="cstat-no" title="statement not covered" >  if (filtro === 'all') <span class="cstat-no" title="statement not covered" >return gastos;</span></span>
+export function filterGastos(gastos: Gasto[], filtro: FiltroGastos, today = new Date()): Gasto[] {
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (filtro === 'all') return gastos;
   const weekStart = <span class="cstat-no" title="statement not covered" >startOfWeek(today);</span>
 <span class="cstat-no" title="statement not covered" >  return gastos.filter(<span class="fstat-no" title="function not covered" >(g</span>asto) =&gt; {</span>
     const fecha = <span class="cstat-no" title="statement not covered" >new Date(`${gasto.fecha}T00:00:00`);</span>
@@ -133,8 +133,8 @@ export function <span class="fstat-no" title="function not covered" >filterGasto
   });
 }
 &nbsp;
-export const totalGastos = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(g</span>astos: Gasto[]) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >  gastos.reduce(<span class="fstat-no" title="function not covered" >(t</span>otal, gasto) =&gt; <span class="cstat-no" title="statement not covered" >total + gasto.monto,</span> 0);</span>
+export const totalGastos = (gastos: Gasto[]) =&gt;
+  gastos.reduce((total, gasto) =&gt; total + gasto.monto, 0);
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -142,7 +142,7 @@ export const totalGastos = <span class="cstat-no" title="statement not covered" 
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-08-12T03:28:39.582Z
+                at 2026-08-13T03:15:07.285Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

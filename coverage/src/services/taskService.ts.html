@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -84,41 +84,41 @@
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Task } from '../types';
 &nbsp;
-const API_URL = <span class="cstat-no" title="statement not covered" >'https://api.taskmanager.com';</span>
+const API_URL = 'https://api.taskmanager.com';
 &nbsp;
-export async function <span class="fstat-no" title="function not covered" >fetchTasks(</span>): Promise&lt;Task[]&gt; {
-  const res = <span class="cstat-no" title="statement not covered" >await fetch(`${API_URL}/tasks`);</span>
-<span class="cstat-no" title="statement not covered" >  if (!res.ok) <span class="cstat-no" title="statement not covered" >throw new Error('Error al obtener las tareas');</span></span>
-<span class="cstat-no" title="statement not covered" >  return res.json();</span>
+export async function fetchTasks(): Promise&lt;Task[]&gt; {
+  const res = await fetch(`${API_URL}/tasks`);
+  if (!res.ok) throw new Error('Error al obtener las tareas');
+  return res.json();
 }
 &nbsp;
-export async function <span class="fstat-no" title="function not covered" >createTask(</span>title: string): Promise&lt;Task&gt; {
-  const res = <span class="cstat-no" title="statement not covered" >await fetch(`${API_URL}/tasks`, {</span>
+export async function createTask(title: string): Promise&lt;Task&gt; {
+  const res = await fetch(`${API_URL}/tasks`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ title }),
   });
-<span class="cstat-no" title="statement not covered" >  if (!res.ok) <span class="cstat-no" title="statement not covered" >throw new Error('Error al crear la tarea');</span></span>
-<span class="cstat-no" title="statement not covered" >  return res.json();</span>
+  if (!res.ok) throw new Error('Error al crear la tarea');
+  return res.json();
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -127,7 +127,7 @@ export async function <span class="fstat-no" title="function not covered" >creat
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-08-12T03:28:39.582Z
+                at 2026-08-13T03:15:07.285Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

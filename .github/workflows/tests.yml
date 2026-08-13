@@ -24,8 +24,11 @@ jobs:
       - name: Instalar dependencias
         run: npm ci --legacy-peer-deps
 
+      - name: Verificar tipos
+        run: npx tsc --noEmit
+
       - name: Ejecutar todas las pruebas con Cobertura
-        run: npm test -- --coverage --coverageReporters="text" --coverageReporters="json-summary" --ci
+        run: npm test -- --coverage --coverageReporters="text" --coverageReporters="json-summary" --coverageReporters="lcov" --ci --runInBand
 
       - name: Validar umbral de cobertura (>=70%)
         run: |
@@ -47,7 +50,6 @@ jobs:
           LINES=$(node -e "console.log(Math.round(require('$COVERAGE_FILE').total.lines.pct))")
           
           THRESHOLD=70
-          FAILED=false
           
           echo "Metricas obtenidas:"
           echo "   Statements: $STATEMENTS% (minimo: $THRESHOLD%)"

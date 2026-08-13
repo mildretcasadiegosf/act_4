@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">88.88% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>8/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>7/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">88.88% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>8/9</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -134,26 +134,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -169,8 +162,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -197,19 +197,19 @@ import { GastoList } from '../components/GastoList';
 import { useGastos } from '../hooks/useGastos';
 import { filterGastos, FiltroGastos, totalGastos } from '../utils/filterGastos';
 &nbsp;
-const FILTERS: { value: FiltroGastos; label: string }[] = <span class="cstat-no" title="statement not covered" >[</span>
+const FILTERS: { value: FiltroGastos; label: string }[] = [
   { value: 'all', label: 'Todos' },
   { value: 'week', label: 'Esta semana' },
   { value: 'month', label: 'Este mes' },
 ];
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >ControlGastosScreen(</span>) {
-  const insets = <span class="cstat-no" title="statement not covered" >useSafeAreaInsets();</span>
-  const { gastos, status, error, guardarGasto, eliminarGasto } = <span class="cstat-no" title="statement not covered" >useGastos();</span>
-  const [filter, setFilter] = <span class="cstat-no" title="statement not covered" >useState&lt;FiltroGastos&gt;('all');</span>
-  const visibleGastos = <span class="cstat-no" title="statement not covered" >filterGastos(gastos, filter);</span>
+export function ControlGastosScreen() {
+  const insets = useSafeAreaInsets();
+  const { gastos, status, error, guardarGasto, eliminarGasto } = useGastos();
+  const [filter, setFilter] = useState&lt;FiltroGastos&gt;('all');
+  const visibleGastos = filterGastos(gastos, filter);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;ScrollView
       className="flex-1 bg-gray-50"
       contentContainerClassName="gap-4 p-4"
@@ -224,16 +224,16 @@ export function <span class="fstat-no" title="function not covered" >ControlGast
         &lt;/Text&gt;
       )}
       {error &amp;&amp; (
-        &lt;Text className="rounded-lg bg-red-100 px-4 py-3 text-sm font-medium text-red-800"&gt;{error}&lt;/Text&gt;
+<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;Text className="rounded-lg bg-red-100 px-4 py-3 text-sm font-medium text-red-800"&gt;{error}&lt;/Text&gt;</span>
       )}
       &lt;View className="rounded-xl bg-violet-100 p-4"&gt;
         &lt;Text className="text-sm font-medium text-violet-800"&gt;Total acumulado&lt;/Text&gt;
         &lt;Text className="text-2xl font-bold text-violet-900"&gt;${totalGastos(gastos).toFixed(2)}&lt;/Text&gt;
       &lt;/View&gt;
       &lt;View className="flex-row flex-wrap gap-2"&gt;
-        {FILTERS.map(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; {
-          const selected = <span class="cstat-no" title="statement not covered" >filter === item.value;</span>
-<span class="cstat-no" title="statement not covered" >          return (</span>
+        {FILTERS.map((item) =&gt; {
+          const selected = filter === item.value;
+          return (
             &lt;Pressable
               key={item.value}
               onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setFilter(item.value)}</span>
@@ -259,7 +259,7 @@ export function <span class="fstat-no" title="function not covered" >ControlGast
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-08-12T03:28:39.663Z
+                at 2026-08-13T03:15:07.383Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
